@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lockademy · Réussis ta Security+</title>
+<meta name="description" content="Lockademy, l'appli Android pour réviser la certification CompTIA Security+ en français et en anglais : questions corrigées, examens blancs chronométrés, révision du jour et statistiques.">
+<meta property="og:title" content="Lockademy · Réussis ta Security+">
+<meta property="og:description" content="Révise la Security+ sur ton téléphone, en français ou en anglais : questions expliquées, examens blancs, révision du jour.">
+<meta property="og:image" content="https://lockademy.github.io/img/banniere.jpg">
+<meta property="og:url" content="https://lockademy.github.io/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b1118">
+<link rel="icon" href="img/icone.png">
+<style>
+:root{
+  --bg:#0b1118;--bg2:#101924;--card:#151f2b;--card2:#1b2735;--ink:#eaf1f8;--soft:#8fa2b7;--line:#243243;
+  --acc:#2ec4a0;--acc2:#1f8fff;--gold:#ffc84a;
+  --grad:linear-gradient(135deg,#123a4a 0%,#14324f 55%,#1b2450 100%);
+  --shadow:0 8px 24px rgba(0,0,0,.28);color-scheme:dark}
+@media (prefers-color-scheme:light){:root{
+  --bg:#f3f6fa;--bg2:#ffffff;--card:#ffffff;--card2:#eef3f8;--ink:#0f1b28;--soft:#5d6f82;--line:#dbe3ec;
+  --acc:#14a383;--grad:linear-gradient(135deg,#d9f5ee 0%,#dcebff 60%,#e6e3ff 100%);
+  --shadow:0 6px 18px rgba(16,40,70,.08);color-scheme:light}}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acc2)}
+img{max-width:100%;height:auto;display:block}
+html[data-lang=fr] [lang=en],html[data-lang=en] [lang=fr]{display:none!important}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+/* barre */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:12px;height:60px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;color:var(--ink);text-decoration:none}
+.brand svg{width:28px;height:28px}
+.sp{flex:1}
+.nav{display:flex;gap:18px;font-size:15px}
+.nav a{color:var(--soft);text-decoration:none}.nav a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.lang button{border:0;background:none;color:var(--soft);font:inherit;font-size:14px;font-weight:700;padding:6px 10px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--acc);color:#06231c}
+@media (max-width:720px){.nav{display:none}}
+
+/* hero */
+.hero{padding:56px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:var(--soft);margin-bottom:18px}
+.tag b{color:var(--acc);white-space:nowrap}
+h1{font-size:clamp(34px,5.4vw,56px);line-height:1.06;margin:0 0 16px;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--acc)}
+.lead{font-size:19px;color:var(--soft);margin:0 0 26px;max-width:34em}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:14px;font-weight:700;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--card)}
+.btn.main{background:var(--acc);border-color:var(--acc);color:#06231c}
+.btn svg{width:22px;height:22px}
+.btn small{display:block;font-weight:500;font-size:12px;opacity:.8;line-height:1.1}
+.btn span{line-height:1.2}
+.facts{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;color:var(--soft);font-size:15px}
+.facts b{display:block;color:var(--ink);font-size:22px}
+.phone{justify-self:center;width:min(340px,82vw);position:relative}
+.phone img{border-radius:24px;width:100%;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.phone::before{content:"";position:absolute;inset:-40px;z-index:-1;background:radial-gradient(closest-side,rgba(46,196,160,.28),transparent);}
+@media (max-width:820px){.hero{padding-top:36px}.hero .wrap{grid-template-columns:1fr;gap:36px}}
+
+/* sections */
+section{padding:56px 0}
+.kicker{color:var(--acc);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px}
+h2{font-size:clamp(26px,3.6vw,36px);line-height:1.15;margin:0 0 12px;letter-spacing:-.01em}
+.sub{color:var(--soft);margin:0 0 32px;font-size:17px;max-width:40em}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.card h3{margin:12px 0 6px;font-size:18px}
+.card p{margin:0;color:var(--soft);font-size:15px}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(46,196,160,.14);color:var(--acc)}
+.ico.b{background:rgba(31,143,255,.14);color:var(--acc2)}
+.ico.g{background:rgba(255,200,74,.16);color:#e0a400}
+.ico svg{width:24px;height:24px}
+
+/* captures */
+.shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 16px 16px;margin:0 -16px;scrollbar-width:thin}
+.shots img{flex:0 0 auto;width:220px;border-radius:20px;border:1px solid var(--line);scroll-snap-align:start;box-shadow:var(--shadow)}
+.note{font-size:14px;color:var(--soft);margin-top:6px}
+
+/* étapes */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.steps .card{position:relative;padding-top:56px}
+.steps .card::before{counter-increment:s;content:counter(s);position:absolute;top:18px;left:20px;width:30px;height:30px;border-radius:50%;background:var(--acc);color:#06231c;font-weight:800;display:grid;place-items:center}
+
+/* tarifs */
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+@media (max-width:860px){.prices{grid-template-columns:1fr;max-width:460px}}
+.price{display:flex;flex-direction:column}
+.price .name{font-weight:800;font-size:19px}
+.price .desc{color:var(--soft);font-size:14px;margin:2px 0 14px}
+.price .amt{font-size:38px;font-weight:800;line-height:1}
+.price .unit{color:var(--soft);font-size:14px;margin:4px 0 16px}
+.price ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:15px}
+.price li{display:flex;gap:9px;align-items:flex-start}
+.price li::before{content:"✓";color:var(--acc);font-weight:800}
+.price li.no::before{content:"–";color:var(--soft)}
+.price li.no{color:var(--soft)}
+.price .pill{align-self:flex-start;font-size:12px;font-weight:800;letter-spacing:.04em;padding:4px 10px;border-radius:999px;margin-bottom:12px;background:var(--card2);color:var(--soft)}
+.price.best{border:2px solid var(--gold)}
+.price.best .pill{background:var(--gold);color:#3a2a00}
+.price .foot{margin-top:auto;padding-top:18px;font-size:14px;color:var(--soft)}
+
+/* faq */
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;padding:12px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--acc);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 14px;color:var(--soft)}
+
+/* bandeau final */
+.cta{background:var(--grad);border-radius:24px;padding:36px 28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+.cta h2{margin-bottom:6px}.cta p{margin:0;color:var(--soft)}
+.cta img{width:220px}
+@media (max-width:720px){.cta{grid-template-columns:1fr}.cta img{width:180px;justify-self:center}}
+
+footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--soft);font-size:14px;margin-top:40px}
+footer .wrap{display:grid;gap:14px}
+footer .links{display:flex;gap:18px;flex-wrap:wrap}
+footer a{color:var(--soft)}footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg viewBox="0 -6 120 124" aria-hidden="true"><path d="M34 46V30a26 26 0 0 1 52 0v8" fill="none" stroke="#2ec4a0" stroke-width="12" stroke-linecap="round"/><rect x="16" y="44" width="88" height="68" rx="16" fill="#1f8fff"/><path d="M40 78l12 12 24-26" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>Lockademy</a>
+    <div class="sp"></div>
+    <nav class="nav">
+      <a href="#fonctions"><span lang="fr">Fonctions</span><span lang="en">Features</span></a>
+      <a href="#apercu"><span lang="fr">Aperçu</span><span lang="en">Screenshots</span></a>
+      <a href="#tarifs"><span lang="fr">Tarifs</span><span lang="en">Pricing</span></a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" data-set="fr" aria-pressed="true">FR</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="tag"><b>Security+ SY0-801</b> · <span lang="fr">Android · Français et anglais</span><span lang="en">Android · French and English</span></div>
+        <h1 lang="fr">Réussis ta <em>Security+</em>, une question à la fois.</h1>
+        <h1 lang="en">Pass your <em>Security+</em>, one question at a time.</h1>
+        <p class="lead" lang="fr">Lockademy est une appli de révision pour la certification CompTIA Security+. Des questions corrigées et expliquées, des examens blancs chronométrés et une révision du jour qui cible tes points faibles. Quelques minutes par jour, sur ton téléphone.</p>
+        <p class="lead" lang="en">Lockademy is a study app for the CompTIA Security+ certification. Questions with clear explanations, timed mock exams and a daily review that targets your weak spots. A few minutes a day, on your phone.</p>
+        <div class="ctas">
+          <span class="btn main" aria-disabled="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2.6v18.8c0 .4.4.6.7.4l10.6-9.4a.5.5 0 0 0 0-.8L4.7 2.2c-.3-.2-.7 0-.7.4zm12.6 7.3 2.8-2.5L7 1.2l9.6 8.7zm0 4.2L7 22.8l12.4-6.2-2.8-2.5zm4.7-3-2.4-1.2-3 2.1 3 2.1 2.4-1.2c.6-.4.6-1.4 0-1.8z"/></svg>
+            <span><small lang="fr">Bientôt sur</small><small lang="en">Coming soon to</small>Google Play</span>
+          </span>
+          <a class="btn" href="#fonctions"><span lang="fr">Découvrir l'appli</span><span lang="en">See what's inside</span></a>
+        </div>
+        <div class="facts">
+          <div><b>60</b><span lang="fr">questions gratuites</span><span lang="en">free questions</span></div>
+          <div><b>300</b><span lang="fr">questions en Premium</span><span lang="en">questions in Premium</span></div>
+          <div><b>0</b><span lang="fr">compte à créer</span><span lang="en">accounts to create</span></div>
+        </div>
+      </div>
+      <div class="phone"><img src="img/capture_2.jpg" alt="Écran d'accueil de Lockademy avec le niveau de préparation" width="540" height="960"></div>
+    </div>
+  </div>
+
+  <!-- FONCTIONS -->
+  <section id="fonctions">
+    <div class="wrap">
+      <p class="kicker"><span lang="fr">Ce que fait l'appli</span><span lang="en">What the app does</span></p>
+      <h2 lang="fr">Tout pour arriver prêt le jour de l'examen</h2>
+      <h2 lang="en">Everything you need to be ready on exam day</h2>
+      <p class="sub" lang="fr">Lockademy suit le programme officiel de la Security+, domaine par domaine, et t'aide à savoir où tu en es.</p>
+      <p class="sub" lang="en">Lockademy follows the official Security+ objectives, domain by domain, and shows you exactly where you stand.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></div>
+          <h3><span lang="fr">Entraînement par domaine</span><span lang="en">Practice by domain</span></h3>
+          <p lang="fr">Choisis un domaine ou un objectif précis du programme. Chaque réponse est expliquée pour comprendre, pas seulement mémoriser.</p>
+          <p lang="en">Pick a domain or a specific exam objective. Every answer comes with an explanation, so you understand instead of memorizing.</p>
+        </div>
+        <div class="card">
+          <div class="ico b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></div>
+          <h3><span lang="fr">Examen blanc chronométré</span><span lang="en">Timed mock exam</span></h3>
+          <p lang="fr">Mets-toi en conditions réelles avec un chrono, une musique de concentration et ton score à la fin.</p>
+          <p lang="en">Practice under real conditions with a timer, focus music in the background and your score at the end.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div>
+          <h3><span lang="fr">Révision du jour</span><span lang="en">Daily review</span></h3>
+          <p lang="fr">Chaque jour, une petite série qui mélange questions nouvelles et questions à revoir, au bon moment.</p>
+          <p lang="en">Every day, a short set mixing new questions with the ones you need to see again, right on time.</p>
+        </div>
+        <div class="card">
+          <div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+          <h3><span lang="fr">Mes erreurs</span><span lang="en">My mistakes</span></h3>
+          <p lang="fr">Tes erreurs reviennent, mélangées à d'autres questions, jusqu'à ce que tu les maîtrises.</p>
+          <p lang="en">Questions you got wrong come back, mixed with others, until you have them down.</p>
+        </div>
+        <div class="card">
+          <div class="ico b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+          <h3><span lang="fr">Statistiques et progrès</span><span lang="en">Stats and progress</span></h3>
+          <p lang="fr">Niveau de préparation, taux de réussite, maîtrise par domaine et série de jours : tu vois tout de suite quoi travailler.</p>
+          <p lang="en">Readiness level, success rate, mastery by domain and day streak: you see right away what to work on.</p>
+        </div>
+        <div class="card">
+          <div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div>
+          <h3><span lang="fr">Défi 60 secondes</span><span lang="en">60-second challenge</span></h3>
+          <p lang="fr">Un maximum de bonnes réponses en une minute. Parfait pour réviser dans le bus, et battre ton record.</p>
+          <p lang="en">As many right answers as you can in one minute. Perfect on the bus, and to beat your best score.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APERCU -->
+  <section id="apercu">
+    <div class="wrap">
+      <p class="kicker"><span lang="fr">Aperçu</span><span lang="en">Screenshots</span></p>
+      <h2 lang="fr">Simple, clair, pensé pour le téléphone</h2>
+      <h2 lang="en">Simple, clear, made for your phone</h2>
+      <div class="shots">
+        <img src="img/capture_1.jpg" alt="Lockademy : prépare ta Security+" width="540" height="960" loading="lazy">
+        <img src="img/capture_2.jpg" alt="Niveau de préparation" width="540" height="960" loading="lazy">
+        <img src="img/capture_3.jpg" alt="Réponse expliquée" width="540" height="960" loading="lazy">
+        <img src="img/capture_4.jpg" alt="Examen blanc chronométré" width="540" height="960" loading="lazy">
+        <img src="img/capture_5.jpg" alt="Statistiques par domaine" width="540" height="960" loading="lazy">
+        <img src="img/capture_6.jpg" alt="Défi 60 secondes" width="540" height="960" loading="lazy">
+      </div>
+      <p class="note" lang="en">Screenshots show the French version. The app is fully available in English too.</p>
+    </div>
+  </section>
+
+  <!-- COMMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker"><span lang="fr">Comment ça marche</span><span lang="en">How it works</span></p>
+      <h2 lang="fr">Trois étapes, chaque jour</h2>
+      <h2 lang="en">Three steps, every day</h2>
+      <div class="steps">
+        <div class="card"><h3><span lang="fr">Fixe ta date d'examen</span><span lang="en">Set your exam date</span></h3><p lang="fr">L'appli affiche le compte à rebours et ton objectif quotidien.</p><p lang="en">The app shows a countdown and your daily goal.</p></div>
+        <div class="card"><h3><span lang="fr">Révise quelques minutes</span><span lang="en">Study a few minutes</span></h3><p lang="fr">Révision du jour, entraînement par domaine ou défi 60 secondes.</p><p lang="en">Daily review, practice by domain or the 60-second challenge.</p></div>
+        <div class="card"><h3><span lang="fr">Passe l'examen blanc</span><span lang="en">Take the mock exam</span></h3><p lang="fr">Quand ton niveau de préparation est au vert, teste-toi en conditions réelles.</p><p lang="en">When your readiness level turns green, test yourself under real conditions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFS -->
+  <section id="tarifs">
+    <div class="wrap">
+      <p class="kicker"><span lang="fr">Tarifs</span><span lang="en">Pricing</span></p>
+      <h2 lang="fr">Gratuit pour commencer, Premium sans abonnement</h2>
+      <h2 lang="en">Free to start, Premium with no subscription</h2>
+      <p class="sub" lang="fr">Premium arrive bientôt. C'est un achat unique : tu paies une fois et tu gardes l'accès à vie.</p>
+      <p class="sub" lang="en">Premium is coming soon. It's a one-time purchase: pay once and keep access for life.</p>
+      <div class="prices">
+        <div class="card price">
+          <span class="pill"><span lang="fr">DISPONIBLE</span><span lang="en">AVAILABLE</span></span>
+          <div class="name"><span lang="fr">Gratuit</span><span lang="en">Free</span></div>
+          <div class="desc"><span lang="fr">Pour découvrir</span><span lang="en">To get started</span></div>
+          <div class="amt">0 $</div>
+          <div class="unit"><span lang="fr">pour toujours</span><span lang="en">forever</span></div>
+          <ul>
+            <li><span lang="fr">60 questions corrigées</span><span lang="en">60 questions with explanations</span></li>
+            <li><span lang="fr">Examens blancs de 30 questions</span><span lang="en">30-question mock exams</span></li>
+            <li><span lang="fr">Révision du jour, Mes erreurs, statistiques</span><span lang="en">Daily review, My mistakes, stats</span></li>
+            <li class="no"><span lang="fr">Avec publicités</span><span lang="en">With ads</span></li>
+          </ul>
+        </div>
+        <div class="card price">
+          <span class="pill"><span lang="fr">BIENTÔT</span><span lang="en">COMING SOON</span></span>
+          <div class="name">Premium</div>
+          <div class="desc"><span lang="fr">Par certification · accès à vie</span><span lang="en">Per certification · lifetime access</span></div>
+          <div class="amt">4,99 $</div>
+          <div class="unit"><span lang="fr">achat unique</span><span lang="en">one-time purchase</span></div>
+          <ul>
+            <li><span lang="fr">300 questions Security+ corrigées</span><span lang="en">300 Security+ questions with explanations</span></li>
+            <li><span lang="fr">Examens blancs complets : 90 questions en 90 min</span><span lang="en">Full mock exams: 90 questions in 90 min</span></li>
+            <li><span lang="fr">Sans publicité</span><span lang="en">No ads</span></li>
+            <li><span lang="fr">Pas d'abonnement</span><span lang="en">No subscription</span></li>
+          </ul>
+        </div>
+        <div class="card price best">
+          <span class="pill"><span lang="fr">MEILLEURE OFFRE · BIENTÔT</span><span lang="en">BEST VALUE · COMING SOON</span></span>
+          <div class="name"><span lang="fr">Pack complet</span><span lang="en">Full pack</span></div>
+          <div class="desc"><span lang="fr">Toutes les certifications · accès à vie</span><span lang="en">All certifications · lifetime access</span></div>
+          <div class="amt">9,99 $</div>
+          <div class="unit"><span lang="fr">achat unique</span><span lang="en">one-time purchase</span></div>
+          <ul>
+            <li><span lang="fr">Toutes les certifications Lockademy</span><span lang="en">Every Lockademy certification</span></li>
+            <li><span lang="fr">Toutes les questions et tous les examens blancs</span><span lang="en">Every question and every mock exam</span></li>
+            <li><span lang="fr">Nouvelles questions au fil des mises à jour</span><span lang="en">New questions with every update</span></li>
+            <li><span lang="fr">Sans publicité</span><span lang="en">No ads</span></li>
+          </ul>
+          <div class="foot"><span lang="fr">Le meilleur prix dès 3 certifications.</span><span lang="en">The best price from 3 certifications.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap" style="max-width:820px">
+      <p class="kicker">FAQ</p>
+      <h2 lang="fr">Questions fréquentes</h2>
+      <h2 lang="en">Frequently asked questions</h2>
+      <details>
+        <summary><span lang="fr">L'appli est-elle en français ?</span><span lang="en">Is the app available in English?</span></summary>
+        <p lang="fr">Oui. Lockademy est entièrement en français et en anglais. Tu choisis ta langue au premier lancement et tu peux la changer dans les Réglages.</p>
+        <p lang="en">Yes. Lockademy is fully available in English and French. You pick your language on first launch and can change it any time in Settings.</p>
+      </details>
+      <details>
+        <summary><span lang="fr">Faut-il créer un compte ?</span><span lang="en">Do I need an account?</span></summary>
+        <p lang="fr">Non. Il n'y a pas de compte : ta progression reste sur ton téléphone.</p>
+        <p lang="en">No. There is no account: your progress stays on your phone.</p>
+      </details>
+      <details>
+        <summary><span lang="fr">Quelle version de l'examen est couverte ?</span><span lang="en">Which exam version is covered?</span></summary>
+        <p lang="fr">Les questions suivent les domaines du programme Security+ SY0-801 : concepts généraux, menaces et attaques, architecture, opérations et gestion du programme.</p>
+        <p lang="en">Questions follow the Security+ SY0-801 domains: general concepts, threats and attacks, architecture, operations and program management.</p>
+      </details>
+      <details>
+        <summary><span lang="fr">Premium, c'est un abonnement ?</span><span lang="en">Is Premium a subscription?</span></summary>
+        <p lang="fr">Non. Premium sera un achat unique : 4,99 $ par certification ou 9,99 $ pour le pack complet, avec un accès à vie. Il n'est pas encore disponible.</p>
+        <p lang="en">No. Premium will be a one-time purchase: $4.99 per certification or $9.99 for the full pack, with lifetime access. It isn't available yet.</p>
+      </details>
+      <details>
+        <summary><span lang="fr">Où télécharger Lockademy ?</span><span lang="en">Where can I download Lockademy?</span></summary>
+        <p lang="fr">Lockademy arrive bientôt sur Google Play pour Android. Suis <a href="https://www.tiktok.com/@lockademy">@lockademy sur TikTok</a> pour savoir quand elle sort.</p>
+        <p lang="en">Lockademy is coming soon to Google Play for Android. Follow <a href="https://www.tiktok.com/@lockademy">@lockademy on TikTok</a> to know when it launches.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2 lang="fr">Ta certification commence ici</h2>
+          <h2 lang="en">Your certification starts here</h2>
+          <p lang="fr">Une question, une explication, un pas de plus vers la Security+. Une question ou une idée ? Écris à <a href="mailto:lockademy.app@gmail.com">lockademy.app@gmail.com</a>.</p>
+          <p lang="en">One question, one explanation, one step closer to Security+. A question or an idea? Write to <a href="mailto:lockademy.app@gmail.com">lockademy.app@gmail.com</a>.</p>
+        </div>
+        <img lang="fr" src="img/expert_fr.svg" alt="Illustration : un ingénieur en cybersécurité devant ses écrans" loading="lazy">
+        <img lang="en" src="img/expert_en.svg" alt="Illustration: a cybersecurity engineer in front of security screens" loading="lazy">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="confidentialite/"><span lang="fr">Politique de confidentialité</span><span lang="en">Privacy policy</span></a>
+      <a href="mailto:lockademy.app@gmail.com">Contact</a>
+      <a href="https://www.tiktok.com/@lockademy">TikTok @lockademy</a>
+    </div>
+    <p style="margin:0" lang="fr">Lockademy est une application indépendante, non affiliée à CompTIA. CompTIA et Security+ sont des marques déposées de CompTIA, Inc.</p>
+    <p style="margin:0" lang="en">Lockademy is an independent app, not affiliated with CompTIA. CompTIA and Security+ are registered trademarks of CompTIA, Inc.</p>
+    <p style="margin:0">© 2026 Lockademy</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, pick='fr';
+  var q=new URLSearchParams(location.search).get('lang');
+  var saved=null; try{saved=localStorage.getItem('lockademy-lang')}catch(e){}
+  if(q==='fr'||q==='en') pick=q;
+  else if(saved==='fr'||saved==='en') pick=saved;
+  else if(!/^fr/i.test(navigator.language||'fr')) pick='en';
+  var titles={fr:'Lockademy · Réussis ta Security+',en:'Lockademy · Pass your Security+'};
+  function set(l){
+    root.setAttribute('data-lang',l); root.lang=l; document.title=titles[l];
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});
+    try{localStorage.setItem('lockademy-lang',l)}catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
+  set(pick);
+})();
+</script>
+</body>
+</html>

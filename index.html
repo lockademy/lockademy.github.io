@@ -44,9 +44,9 @@ html[data-lang=fr] [lang=en],html[data-lang=en] [lang=fr]{display:none!important
 @media (max-width:720px){.nav{display:none}}
 
 /* hero */
-.hero{padding:56px 0 40px}
+.hero{padding:56px 0 40px;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center}
-.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:var(--soft);margin-bottom:18px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:var(--soft);margin-bottom:18px;flex-wrap:wrap}
 .tag b{color:var(--acc);white-space:nowrap}
 h1{font-size:clamp(34px,5.4vw,56px);line-height:1.06;margin:0 0 16px;letter-spacing:-.02em}
 h1 em{font-style:normal;color:var(--acc)}
@@ -84,6 +84,17 @@ h2{font-size:clamp(26px,3.6vw,36px);line-height:1.15;margin:0 0 12px;letter-spac
 .shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 16px 16px;margin:0 -16px;scrollbar-width:thin}
 .shots img{flex:0 0 auto;width:220px;border-radius:20px;border:1px solid var(--line);scroll-snap-align:start;box-shadow:var(--shadow)}
 .note{font-size:14px;color:var(--soft);margin-top:6px}
+
+.bi{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:820px){.bi{grid-template-columns:1fr}}
+.bi ul{margin:0 0 0 0;padding:0;list-style:none;display:grid;gap:12px}
+.bi li{display:flex;gap:10px;color:var(--soft)}.bi li b{color:var(--ink)}
+.bi li::before{content:"✓";color:var(--acc);font-weight:800}
+.qdemo .q{font-weight:700;margin:0 0 10px}
+.qdemo .t{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;padding:3px 9px;border-radius:999px;background:var(--card2);color:var(--soft);margin-bottom:8px}
+.qdemo .sw{display:flex;justify-content:center;margin:12px 0}
+.qdemo .sw span{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;border:1px solid var(--acc);color:var(--acc);font-weight:700;font-size:14px}
+.qdemo .en{border-top:1px dashed var(--line);padding-top:12px}
 
 /* étapes */
 .steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
@@ -136,6 +147,7 @@ footer a{color:var(--soft)}footer a:hover{color:var(--ink)}
     <div class="sp"></div>
     <nav class="nav">
       <a href="#fonctions"><span lang="fr">Fonctions</span><span lang="en">Features</span></a>
+      <a href="#anglais"><span lang="fr">Examen en anglais</span><span lang="en">English exam</span></a>
       <a href="#apercu"><span lang="fr">Aperçu</span><span lang="en">Screenshots</span></a>
       <a href="#tarifs"><span lang="fr">Tarifs</span><span lang="en">Pricing</span></a>
       <a href="#faq">FAQ</a>
@@ -218,6 +230,38 @@ footer a{color:var(--soft)}footer a:hover{color:var(--ink)}
           <h3><span lang="fr">Défi 60 secondes</span><span lang="en">60-second challenge</span></h3>
           <p lang="fr">Un maximum de bonnes réponses en une minute. Parfait pour réviser dans le bus, et battre ton record.</p>
           <p lang="en">As many right answers as you can in one minute. Perfect on the bus, and to beat your best score.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BILINGUE -->
+  <section id="anglais">
+    <div class="wrap bi">
+      <div>
+        <p class="kicker"><span lang="fr">L'examen est en anglais</span><span lang="en">Study in your language, pass in English</span></p>
+        <h2 lang="fr">Comprends en français, réussis en anglais</h2>
+        <h2 lang="en">Understand in French, pass in English</h2>
+        <p class="sub" lang="fr">L'examen officiel Security+ SY0-801 se passe uniquement en anglais. Lockademy te forme en français et en anglais, pour que tu comprennes chaque notion dans ta langue et que tu reconnaisses ensuite la même question, avec les mêmes termes, le jour de l'examen.</p>
+        <p class="sub" lang="en">The official Security+ SY0-801 exam is offered in English only. Lockademy teaches you in both French and English, so French speakers can grasp each concept in their own language, then recognize the same question and the same terms on exam day.</p>
+        <ul>
+          <li lang="fr"><span><b>Bouton « Voir en anglais »</b> : en un geste, la question et ses réponses s'affichent en anglais.</span></li>
+          <li lang="en"><span><b>"See in French" button</b>: in English mode, one tap shows the question and its answers in French, and the other way round in French mode.</span></li>
+          <li lang="fr"><span><b>Ça marche dans les deux sens</b> : en mode anglais, le même bouton affiche la version française.</span></li>
+          <li lang="en"><span><b>Same questions, two languages</b>: your progress is shared, whichever language you study in.</span></li>
+          <li lang="fr"><span><b>Le vocabulaire de l'examen</b> : tu apprends l'équivalent anglais de chaque terme technique (chiffrement = encryption, menace = threat…).</span></li>
+          <li lang="en"><span><b>The exam vocabulary</b>: learn each technical term in both languages (encryption = chiffrement, threat = menace…).</span></li>
+        </ul>
+      </div>
+      <div class="card qdemo" aria-hidden="true">
+        <span class="t">FRANÇAIS</span>
+        <p class="q">Quel algorithme de chiffrement est symétrique ?</p>
+        <p style="margin:0;color:var(--soft)">A. RSA · B. ECC · <b style="color:var(--acc)">C. AES</b> · D. Diffie-Hellman</p>
+        <div class="sw"><span>⇄ <span lang="fr" style="border:0;padding:0">Voir en anglais</span><span lang="en" style="border:0;padding:0">FR ⇄ EN in one tap</span></span></div>
+        <div class="en">
+          <span class="t">ENGLISH</span>
+          <p class="q">Which encryption algorithm is symmetric?</p>
+          <p style="margin:0;color:var(--soft)">A. RSA · B. ECC · <b style="color:var(--acc)">C. AES</b> · D. Diffie-Hellman</p>
         </div>
       </div>
     </div>
@@ -316,8 +360,8 @@ footer a{color:var(--soft)}footer a:hover{color:var(--ink)}
       <h2 lang="en">Frequently asked questions</h2>
       <details>
         <summary><span lang="fr">L'appli est-elle en français ?</span><span lang="en">Is the app available in English?</span></summary>
-        <p lang="fr">Oui. Lockademy est entièrement en français et en anglais. Tu choisis ta langue au premier lancement et tu peux la changer dans les Réglages.</p>
-        <p lang="en">Yes. Lockademy is fully available in English and French. You pick your language on first launch and can change it any time in Settings.</p>
+        <p lang="fr">Oui, et aussi en anglais. Comme l'examen officiel se passe uniquement en anglais, Lockademy te permet de réviser en français puis de voir chaque question en anglais avec le bouton « Voir en anglais ». Tu choisis ta langue au premier lancement et tu peux la changer dans les Réglages.</p>
+        <p lang="en">Yes. Lockademy is fully available in English and French. The official exam is in English only, and a one-tap button lets you switch any question between the two languages. You pick your language on first launch and can change it any time in Settings.</p>
       </details>
       <details>
         <summary><span lang="fr">Faut-il créer un compte ?</span><span lang="en">Do I need an account?</span></summary>
